@@ -15,25 +15,28 @@ void Span::addNumber(int num)
 }
 int Span::shortestSpan()
 {
-    int shortest = 0;
+    if (this->_numbers.size() <= 1)
+        throw (Span::NoSpanFound());
     std::sort(this->_numbers.begin(), this->_numbers.end());
-    for (std::vector<int>::iterator i = this->_numbers.begin(); i != this->_numbers.end(); i++)
+    std::vector<int>::iterator init = this->_numbers.begin();
+    int shortest = *(init + 1) - *init;
+    for (init = this->_numbers.begin(); init != this->_numbers.end(); init++)
     {
-        if (i + 1)
+        if ((init < this->_numbers.end() - 1) && (*(init + 1) - *init < shortest))
         {
-            
+            shortest = *(init + 1) - *init;
         }
     }
     return shortest;
 }
 int Span::longestSpan()
 {
-    //minmax_element??
     if (this->_numbers.size() <= 1)
         throw (Span::NoSpanFound());
-    int min = std::min_element(this->_numbers.begin(), this->_numbers.end());
-    int max = std::max_element(this->_numbers.begin(), this->_numbers.end());
-    return max - min;
+
+    std::vector<int>::iterator min = std::min_element(this->_numbers.begin(), this->_numbers.end());
+    std::vector<int>::iterator max = std::max_element(this->_numbers.begin(), this->_numbers.end());
+    return *max - *min;
 }
 
 const char* Span::LimitStoreException::what() const throw()
@@ -41,7 +44,7 @@ const char* Span::LimitStoreException::what() const throw()
     return ("Can't store more numbers");
 }
 
-const char* Span::NoSpanFound::what() const throw
+const char* Span::NoSpanFound::what() const throw()
 {
     return ("Can't find span");
 }

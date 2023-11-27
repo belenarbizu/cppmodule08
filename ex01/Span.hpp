@@ -27,5 +27,5 @@ class Span
         {
             public:
                 const char* what() const throw();
-        }
+        };
 };
