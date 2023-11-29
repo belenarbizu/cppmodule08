@@ -39,6 +39,25 @@ int Span::longestSpan()
     return *max - *min;
 }
 
+void Span::addAllNumbers(std::vector<int> numbers)
+{
+    for (std::vector<int>::iterator i = numbers.begin(); i != numbers.end(); i++)
+    {
+        if (std::distance(numbers.begin(), i) == this->_n)
+            throw (Span::LimitStoreException());
+        this->_numbers.push_back(*i);
+    }
+}
+
+void Span::showNumbers()
+{
+    for (std::vector<int>::iterator i = this->_numbers.begin(); i != this->_numbers.end(); i++)
+    {
+        std::cout << *i << " ";
+    }
+    std::cout << std::endl;
+}
+
 const char* Span::LimitStoreException::what() const throw()
 {
     return ("Can't store more numbers");

@@ -16,6 +16,8 @@ class Span
         void addNumber(int num);
         int shortestSpan();
         int longestSpan();
+        void addAllNumbers(std::vector<int> numbers);
+        void showNumbers();
 
         class LimitStoreException : public std::exception
         {
