@@ -65,5 +65,12 @@ int main(void)
         std::cout << e.what() << std::endl;
     }
 
+    Span sp3(sp1);
+    sp3.showNumbers();
+
+    Span sp4(5);
+    sp4 = sp3;
+    sp4.showNumbers();
+
     return 0;
 }

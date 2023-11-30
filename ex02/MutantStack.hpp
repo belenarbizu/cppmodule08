@@ -12,6 +12,15 @@ class MutantStack : public std::stack<T>
         
         MutantStack() {};
         ~MutantStack() {};
+        MutantStack(const MutantStack& ms)
+        {
+            *this = ms;
+        };
+        MutantStack& operator=(const MutantStack& ms) 
+        {
+            (void)ms;
+            return *this;
+        };
         iterator begin() {return std::stack<T>::c.begin();};
         iterator end() {return std::stack<T>::c.end();};
 

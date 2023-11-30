@@ -7,6 +7,20 @@ Span::~Span()
 {
 }
 
+Span::Span(const Span & sp)
+{
+    this->_n = sp._n;
+    this->_numbers = sp._numbers;
+    *this = sp;
+}
+
+Span& Span::operator=(const Span & sp)
+{
+    this->_n = sp._n;
+    this->_numbers = sp._numbers;
+    return *this;
+}
+
 void Span::addNumber(int num)
 {
     if (this->_numbers.size() >= this->_n)
@@ -17,12 +31,13 @@ int Span::shortestSpan()
 {
     if (this->_numbers.size() <= 1)
         throw (Span::NoSpanFound());
-    std::sort(this->_numbers.begin(), this->_numbers.end());
-    std::vector<int>::iterator init = this->_numbers.begin();
+    std::vector<int> numCopy(this->_numbers);
+    std::sort(numCopy.begin(), numCopy.end());
+    std::vector<int>::iterator init = numCopy.begin();
     int shortest = *(init + 1) - *init;
-    for (init = this->_numbers.begin(); init != this->_numbers.end(); init++)
+    for (init = numCopy.begin(); init != numCopy.end(); init++)
     {
-        if ((init < this->_numbers.end() - 1) && (*(init + 1) - *init < shortest))
+        if ((init < numCopy.end() - 1) && (*(init + 1) - *init < shortest))
         {
             shortest = *(init + 1) - *init;
         }
