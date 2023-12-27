@@ -72,5 +72,17 @@ int main(void)
     sp4 = sp3;
     sp4.showNumbers();
 
+    try
+    {
+        Span sp5(15000);
+        std::vector<int> sv3(15000, 2);
+        sp5.addAllNumbers(sv3);
+        sp5.showNumbers();
+    }
+    catch (std::exception & e)
+    {
+        std::cout << e.what() << std::endl;
+    }
+
     return 0;
 }

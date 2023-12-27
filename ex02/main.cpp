@@ -4,6 +4,8 @@ int main()
 {
     MutantStack<int> mstack;
 
+    std::cout << "----------------STACK-----------------" << std::endl;
+    
     mstack.push(5);
     mstack.push(17);
     
@@ -16,7 +18,9 @@ int main()
     mstack.push(3);
     mstack.push(5);
     mstack.push(737);
-    //[...]
+    mstack.push(34);
+    mstack.push(330);
+    mstack.push(40);
     mstack.push(0);
     
     MutantStack<int>::iterator it = mstack.begin();
@@ -47,6 +51,9 @@ int main()
     lstack.push_back(3);
     lstack.push_back(5);
     lstack.push_back(737);
+    lstack.push_back(34);
+    lstack.push_back(330);
+    lstack.push_back(40);
     lstack.push_back(0);
 
     for (std::list<int>::iterator it = lstack.begin(); it != lstack.end(); ++it)
